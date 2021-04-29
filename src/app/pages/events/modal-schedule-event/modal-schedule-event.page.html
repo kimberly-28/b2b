@@ -1,0 +1,62 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start">
+            <ion-button>
+                <img src="../../../assets/logoconejoblanco.png" style="width: 30px;height: 30px;" />
+                <!-- <img  src="../../assets/logow.JPG" style="width: 30px;height: 30px;"/> -->
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title class="main-header4">Chat de Grupo</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="closeScheduleModal()">
+                <ion-icon slot="end" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-grid>
+        <div *ngFor="let message of chatMessageDetail">
+            <ion-row>
+
+                <ion-col size="9" *ngIf="idUserFromStorage !== message.idUserOrigin" class="message other-message">
+
+                    <b>{{message.userName}} {{message.userLastName}}</b><br>
+                    <span>{{message.messageContent}}</span>
+                    <div class="time" text-right><br> {{message.createAt}}
+                    </div>
+                </ion-col>
+
+                <ion-col offset="3" size="9" *ngIf="idUserFromStorage === message.idUserOrigin" class="message my-message">
+
+                    <b>{{message.userName}} {{message.userLastName}}</b><br>
+                    <span>{{message.messageContent}}</span>
+                    <div class="time" text-right><br> {{message.createAt}}
+                    </div>
+                </ion-col>
+
+            </ion-row>
+        </div>
+    </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <ion-row align-items-center no-padding>
+            <ion-col size="10">
+                <textarea autosize maxRows="4" [(ngModel)]="newMsg" class="message-input">
+            </textarea>
+            </ion-col>
+            <ion-col size="2">
+                <ion-button expand="block" fill="clear" color="primary" class="msg-btn" (click)="sendMessages()">
+                    <ion-icon name="send-outline" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

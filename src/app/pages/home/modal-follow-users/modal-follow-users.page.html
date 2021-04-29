@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start">
+            <ion-button>
+                <img src="../../../assets/logoconejoblanco.png" style="width: 30px;height: 30px;" />
+                <!-- <img  src="../../assets/logow.JPG" style="width: 30px;height: 30px;"/> -->
+            </ion-button>
+        </ion-buttons>
+
+        <ion-buttons slot="secondary">
+        </ion-buttons>
+        <ion-title class="main-header4">Agregar Contactos!</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list lines="none">
+        <ion-item lines="none" *ngFor="let user of usersProfile">
+            <ion-avatar slot="start" style="width: 72px;height: 72px;">
+                <img [src]="user.photoProfileUser" (click)="goToSponsorProfile(user.userId)">
+            </ion-avatar>
+            <ion-label>
+                <h2 style="font-weight: bold;">{{user.userName}} {{user.userLastName}}</h2>
+                <p>{{user.userAbout}}</p>
+            </ion-label>
+            <ion-button class="round" (click)="addContact(user.userId)" (click)="changeShowFollow(user)" ion-button icon-end item-end>
+                <div *ngIf="!user.userFollow; else followed">
+                    <p>Agregar</p>
+                </div>
+                <ng-template #followed>
+                    <p>Agregado</p>
+                </ng-template>
+            </ion-button>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-button (click)="closeScheduleModal()" color="secondary" expand="full">
+        Close Modal
+    </ion-button>
+</ion-footer>

@@ -1,0 +1,69 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Schedule Events</ion-title>
+    <ion-buttons slot="end">
+      <ion-button  (click)="findUsers()" class="color-find">
+        <p>Find</p>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ -->
+
+<ion-header>
+    <ion-toolbar color="tertiary">
+
+        <ion-buttons slot="start">
+            <ion-button>
+                <img src="../../../assets/logoconejoblanco.png" style="width: 30px;height: 30px;" />
+                <!-- <img  src="../../assets/logow.JPG" style="width: 30px;height: 30px;"/> -->
+            </ion-button>
+        </ion-buttons>
+
+
+        <ion-title class="main-header4">Directos</ion-title>
+        <!-- <ion-buttons slot="end">
+      <ion-button class="badge-button" routerLink="/fire-signin" routerDirection="forward">
+        <ion-icon name="person-circle-outline" color="light">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    </ion-toolbar>
+
+    <ion-toolbar color="tertiary">
+
+        <ion-grid fixed class="ion-no-padding">
+
+            <ion-row>
+                <ion-col>
+                    <ion-searchbar color="" placeholder="Find users and brands" (click)="findUsers()" search-icon="search-outline">
+                    </ion-searchbar>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-card *ngFor="let contact of userProfileContacts" (click)="getDetailsEvent(contact.userId, contact.userName, contact.userLastName, contact.photoProfileUser)">
+        <ion-item>
+            <ion-avatar slot="start" style="width: 72px;height: 72px;">
+                <img [src]="contact.photoProfileUser">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{contact.userName}}</h2>
+                <p>Event Date : {{contact.userLastName}}</p>
+                <p>{{contact.userId}}</p>
+            </ion-label>
+        </ion-item>
+
+    </ion-card>
+</ion-content>
